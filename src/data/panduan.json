@@ -1,0 +1,255 @@
+{
+ "topik": [
+  {
+   "id": "start",
+   "judul": "Memulai",
+   "ikon": "rocket"
+  },
+  {
+   "id": "sales",
+   "judul": "Transaksi & Pembayaran",
+   "ikon": "shoppingBag"
+  },
+  {
+   "id": "printer",
+   "judul": "Printer & Perangkat",
+   "ikon": "printer"
+  },
+  {
+   "id": "shift",
+   "judul": "Kasir & Kas",
+   "ikon": "wallet"
+  },
+  {
+   "id": "team",
+   "judul": "Tim & Gaji",
+   "ikon": "users"
+  },
+  {
+   "id": "sync",
+   "judul": "Offline & Sinkron",
+   "ikon": "refreshCw"
+  },
+  {
+   "id": "products",
+   "judul": "Produk & Stok",
+   "ikon": "package"
+  },
+  {
+   "id": "customers",
+   "judul": "Pelanggan & Member",
+   "ikon": "contact"
+  },
+  {
+   "id": "account",
+   "judul": "Akun & Langganan",
+   "ikon": "userCog"
+  }
+ ],
+ "artikel": [
+  {
+   "slug": "menyiapkan-toko-pertama-kali",
+   "topik": "start",
+   "judul": "Menyiapkan toko pertama kali",
+   "isi": "1. Buka Beranda › Langkah persiapan.\n2. Tambah produk atau layanan yang dijual.\n3. Atur struk, pajak, dan metode pembayaran di Pengaturan.\n4. Tambah karyawan dan atur PIN mereka di Tim.\n5. Buka kasir dengan kas awal, lalu mulai berjualan.",
+   "gambar": {
+    "src": "/panduan/menyiapkan-toko-pertama-kali.webp",
+    "w": 1280,
+    "h": 729
+   }
+  },
+  {
+   "slug": "mengatur-jenis-usaha-menu",
+   "topik": "start",
+   "judul": "Mengatur jenis usaha & menu",
+   "isi": "Jenis usaha menentukan menu yang tampil: kuliner (meja & dapur) atau ritel (stok & barcode). Ubah di Pengaturan › Jenis usaha; fitur meja dan dapur bisa dimatikan per outlet."
+  },
+  {
+   "slug": "membuat-transaksi-menerima-bayar",
+   "topik": "sales",
+   "judul": "Membuat transaksi & menerima bayar",
+   "isi": "1. Buka Kasir, ketuk produk untuk menambah ke pesanan.\n2. Pilih jenis pesanan, pelanggan, diskon, atau catatan bila perlu.\n3. Ketuk Bayar Rp… (di HP ada di bilah bawah), pilih metode, masukkan uang diterima.\n4. Pembeli membayar dengan dua cara, mis. sebagian tunai dan sisanya QRIS? Ketuk Bayar pakai 2 metode; transaksinya tercatat sebagai Gabungan.\n5. Struk tercetak otomatis bila printer sudah diatur.",
+   "gambar": {
+    "src": "/panduan/membuat-transaksi-menerima-bayar.webp",
+    "w": 1280,
+    "h": 733
+   }
+  },
+  {
+   "slug": "menerima-pembayaran-qris",
+   "topik": "sales",
+   "judul": "Menerima pembayaran QRIS",
+   "isi": "Atur sekali di Pengaturan › Metode pembayaran: unggah foto/screenshot QRIS toko (atau pindai dengan kamera); kode dan nama di QRIS terisi otomatis. Saat bayar, pilih QRIS, ketuk Tampilkan QRIS, minta pembeli memindai, lalu ketuk Sudah dibayar setelah dana masuk. Kasir Sakti tidak memotong biaya."
+  },
+  {
+   "slug": "mencatat-kasbon-melunasinya",
+   "topik": "sales",
+   "judul": "Mencatat kasbon & melunasinya",
+   "isi": "Nyalakan Izinkan kasbon di Pengaturan › Pesanan & keamanan kasir. Saat bayar pilih Kasbon, isi nama dan nomor HP pelanggan. Lunasi dari Riwayat › Kasbon atau dari detail pelanggan. Untuk mengingatkan pelanggan, buka transaksinya, ketuk Kirim via WA, lalu pilih Pengingat tagihan kasbon."
+  },
+  {
+   "slug": "refund-batal-transaksi",
+   "topik": "sales",
+   "judul": "Refund & batal transaksi",
+   "isi": "Buka Riwayat dan pilih transaksi. Di bilah bawah rincian transaksi, ketuk ⋯ lalu pilih Refund (atau Batalkan bila uang belum diterima). Pilih Refund semua atau Refund sebagian, lalu isi alasan. Kasir butuh PIN pemilik selama PIN pemilik untuk batal & refund menyala di Pengaturan › Pesanan & keamanan kasir. Uang tunai yang dikembalikan mengurangi kas laci shift yang sedang buka."
+  },
+  {
+   "slug": "menghubungkan-printer-struk",
+   "topik": "printer",
+   "judul": "Menghubungkan printer struk",
+   "isi": "1. Buka Pengaturan › Printer & laci uang, lalu ketuk Tambah printer.\n2. Bluetooth: nyalakan printer dan dekatkan ke HP, lalu ketuk Pilih printer Bluetooth. Printer muncul sendiri; yang paling dekat diberi tanda Paling dekat.\n3. Ada beberapa printer bernama sama? Namanya dibedakan kode singkat, mis. \"RPP02N (1A90)\". Ketuk Cetak tes — printer yang mengeluarkan kertas adalah printer itu.\n4. Printer tidak ada di daftar? Ketuk Tampilkan perangkat lain. Izinkan akses Perangkat sekitar; di Android 11 ke bawah, Lokasi (GPS) juga harus menyala.\n5. Jaringan (Wi-Fi/LAN): isi alamat IP printer (lihat hasil self-test printer) dan port 9100.\n6. Beri nama (mis. Printer kasir, Printer dapur) dan pilih lebar kertas. Di Dipakai untuk, centang Struk kasir dan/atau Tiket dapur (wajib minimal satu).\n7. Ketuk Tes cetak, lalu Simpan. Struk terpotong, terlalu lebar, atau kertas terbuang banyak? Buka Penyesuaian lanjutan. Punya printer khusus dapur? Tambahkan sebagai printer kedua.\nDi kepala Kasir, ikon printer bertitik warna menunjukkan statusnya: hijau siap, kuning kertas hampir habis, merah bermasalah, abu belum dicek. Ketuk ikonnya untuk melihat langkah perbaikan, lalu Cek ulang.",
+   "gambar": {
+    "src": "/panduan/menghubungkan-printer-struk.webp",
+    "w": 1280,
+    "h": 800
+   }
+  },
+  {
+   "slug": "salinan-struk-untuk-toko",
+   "topik": "printer",
+   "judul": "Salinan struk untuk toko",
+   "isi": "1. Buka Pengaturan › Struk, lalu di Salinan untuk toko nyalakan Cetak salinan untuk toko.\n2. Pilih Isi salinan: Sama seperti struk, atau Ringkas (tanpa daftar barang, hemat kertas). Ketuk Lihat contoh salinan untuk melihat hasilnya.\n3. Setelah struk pelanggan, tercetak satu salinan bertanda SALINAN TOKO untuk disimpan kasir.\n4. Printer tanpa pemotong otomatis: muncul pesan Sobek struk pelanggan dulu. Sobek struknya, lalu ketuk Cetak salinan.\nButuh salinan transaksi lama? Buka Transaksi, pilih transaksinya, lalu ketuk Salinan toko (bila tidak tampil, ada di Lainnya).",
+   "gambar": {
+    "src": "/panduan/salinan-struk-untuk-toko.webp",
+    "w": 1280,
+    "h": 800
+   }
+  },
+  {
+   "slug": "kunci-kasir-otomatis-pin-karyawan",
+   "topik": "printer",
+   "judul": "Kunci kasir otomatis & PIN karyawan",
+   "isi": "Bawaannya mati. Bila diaktifkan, perangkat terkunci sendiri setelah layar tidak disentuh beberapa menit: atur di Pengaturan › Perangkat ini › Lanjutan › Kunci kasir otomatis. Karyawan membuka dengan PIN masing-masing; atur PIN di Tim › Karyawan. Keluar dari akun usaha di layar kunci butuh PIN pemilik.",
+   "gambar": {
+    "src": "/panduan/kunci-kasir-otomatis-pin-karyawan.webp",
+    "w": 1280,
+    "h": 800
+   }
+  },
+  {
+   "slug": "buka-tutup-kasir",
+   "topik": "shift",
+   "judul": "Buka & tutup kasir",
+   "isi": "Buka kasir dari Beranda dengan kas awal. Saat tutup, ringkasan lengkap tampil: penjualan, uang masuk per metode, kas masuk/keluar, item terjual, dan jumlah seharusnya di laci. Hitung uang di laci, ketik totalnya, lalu cocokkan; bila ada selisih tulis alasannya. Pemilik bisa menyembunyikan angka sistem dari kasir di Pengaturan › Pesanan & keamanan kasir › Tutup kasir tanpa melihat angka sistem (bawaannya mati).\nPemilik melihat semua laporan di Riwayat tutup kasir (menu akun atau Lainnya); laporan bisa dicetak atau dibagikan. Nyalakan saringan Hanya yang ada selisih untuk mencari shift yang uangnya kurang atau lebih.",
+   "gambar": {
+    "src": "/panduan/buka-tutup-kasir.webp",
+    "w": 1280,
+    "h": 800
+   }
+  },
+  {
+   "slug": "kas-masuk-keluar-selisih-kas",
+   "topik": "shift",
+   "judul": "Kas masuk/keluar & selisih kas",
+   "isi": "Catat uang yang masuk atau keluar laci di luar penjualan (beli es, setor ke pemilik) lewat Shift saat ini › Kas masuk/keluar. Saat tutup kasir, hasil hitung uang ditandai Pas, Kurang Rp… (uang di laci lebih sedikit dari seharusnya), atau Lebih Rp….",
+   "gambar": {
+    "src": "/panduan/kas-masuk-keluar-selisih-kas.webp",
+    "w": 1280,
+    "h": 800
+   }
+  },
+  {
+   "slug": "menambah-karyawan-pin",
+   "topik": "team",
+   "judul": "Menambah karyawan & PIN",
+   "isi": "Buka Tim › Karyawan, lalu ketuk Tambah karyawan. Di Akses di aplikasi, pilih Pemilik (semua menu), Kasir, Dapur, atau Karyawan (absen saja). Jabatan hanya label dan boleh dikosongkan. Atur PIN 6 angka: karyawan memakai PIN untuk membuka kasir dan absen di perangkat toko.\nSetelah disimpan, ketuk nama karyawan untuk membuka detailnya. Ingin karyawan masuk dari HP pribadinya? Pastikan no. HP terisi, pilih Ruang Karyawan atau Sesuai tugas di Akses dari HP pribadi, lalu ketuk Undang dan kirim tautannya lewat WhatsApp. Karyawan membuat kata sandinya sendiri.\nData diri diubah lewat Ubah data. Nonaktifkan bila karyawan cuti panjang atau mungkin kembali; Hapus karyawan bila sudah berhenti atau salah input — riwayatnya tetap tersimpan.",
+   "gambar": {
+    "src": "/panduan/menambah-karyawan-pin.webp",
+    "w": 1280,
+    "h": 800
+   }
+  },
+  {
+   "slug": "jadwal-shift-shift-tetap",
+   "topik": "team",
+   "judul": "Jadwal shift & shift tetap",
+   "isi": "Buat daftar shift dulu di Pengaturan › Karyawan & absen › Daftar shift (mis. Pagi 08:00–16:00, Malam 22:00–06:00).\n1. Shift tetap: buka Tim › Jadwal, ketuk nama karyawan, pilih satu atau lebih shift, pilih hari (atau Setiap hari), lalu Terapkan. Hari tanpa shift = libur. Berlaku tiap minggu sampai diubah.\n2. Tanggal tertentu saja: ketuk kotak di jadwal untuk mengganti shift atau meliburkan hari itu (tampil oranye).\n3. Telat & lembur dihitung dari shift masing-masing. Shift malam yang absen masuk lewat tengah malam dihitung ke shift kemarin."
+  },
+  {
+   "slug": "absen-slip-gaji",
+   "topik": "team",
+   "judul": "Absen & slip gaji",
+   "isi": "Karyawan absen masuk/pulang dengan PIN di Tim › Kehadiran, atau dari HP pribadinya (Ruang Karyawan) — setelah absen muncul konfirmasi berhasil beserta jam dan status telat. Atur jam kerja dan toleransi telat di Pengaturan › Jam kerja & telat; kosongkan toleransi bila telat tidak dihitung. Jadwal tiap karyawan diatur di Tim › Jadwal. Terbitkan slip gaji bulanan di Tim › Gaji; bila kehadiran berubah sebelum slip dibayar, ketuk Terbitkan ulang."
+  },
+  {
+   "slug": "berjualan-saat-internet-putus",
+   "topik": "sync",
+   "judul": "Berjualan saat internet putus",
+   "isi": "Kasir Sakti tetap bisa dipakai tanpa internet: transaksi, stok, dan absen tersimpan di perangkat dan dikirim otomatis saat tersambung lagi. Status sinkron tampil di Beranda.\nYang butuh internet: Pesanan QR baru dari pelanggan, memperbarui status langganan, dan mengganti kata sandi."
+  },
+  {
+   "slug": "menambah-produk-varian-pilihan-tambahan",
+   "topik": "products",
+   "judul": "Menambah produk, varian & pilihan tambahan",
+   "isi": "Produk › Tambah: isi nama, harga jual, harga modal (untuk laba), kategori. Tambah varian bila ukuran/rasa berbeda harga; pilihan ekstra (gula, topping) diatur di Produk › Kelola › Pilihan ekstra. Punya banyak produk? Masukkan sekaligus lewat Produk › Kelola › Impor produk.",
+   "gambar": {
+    "src": "/panduan/menambah-produk-varian-pilihan-tambahan.webp",
+    "w": 1280,
+    "h": 800
+   }
+  },
+  {
+   "slug": "stok-masuk-stok-menipis",
+   "topik": "products",
+   "judul": "Stok masuk & stok menipis",
+   "isi": "Aktifkan Lacak stok di form produk dan isi Stok minimum. Catat barang datang di Produk › Kelola › Stok & harga modal › Stok masuk. Barang di bawah minimum muncul di Produk › Kelola › Stok menipis, di Beranda, dan di notifikasi.",
+   "gambar": {
+    "src": "/panduan/stok-masuk-stok-menipis.webp",
+    "w": 1280,
+    "h": 729
+   }
+  },
+  {
+   "slug": "impor-produk-dari-excel-atau-csv",
+   "topik": "products",
+   "judul": "Impor produk dari Excel atau CSV",
+   "isi": "1. Buka Produk › Kelola › Impor produk.\n2. Ketuk Unduh template, lalu pilih Excel lengkap (produk, varian, bahan baku, resep, dan pilihan ekstra dalam satu berkas) atau CSV sederhana (produk saja).\n3. Isi satu baris untuk satu produk. Di template Excel, isi juga lembar Varian, Bahan, Resep, dan Pilihan Ekstra bila perlu. Ekspor Excel dari aplikasi kasir lain juga bisa langsung dipakai.\n4. Ketuk Pilih berkas dan pilih berkas .xlsx atau .csv (maksimal 1.000 produk).\n5. Di layar Periksa impor, cek kartu berkasnya (salah berkas? ketuk Ganti berkas), pilih produk, tentukan baris kembar dan produk yang sudah ada, lalu ketuk Impor.",
+   "gambar": {
+    "src": "/panduan/impor-produk-dari-excel-atau-csv.webp",
+    "w": 1280,
+    "h": 800
+   }
+  },
+  {
+   "slug": "member-poin-tier",
+   "topik": "customers",
+   "judul": "Member, poin & tier",
+   "isi": "Aktifkan program di Pengaturan › Pelanggan & Member. Member mendapat poin saat transaksi lunas; poin bisa ditukar sebagai potongan di layar Bayar. Tier memberi diskon otomatis."
+  },
+  {
+   "slug": "paket-lifetime-premium",
+   "topik": "account",
+   "judul": "Paket Lifetime & Premium",
+   "isi": "Uji coba 14 hari membuka semua fitur. Lifetime (sekali bayar): kasir, meja, open bill, voucher, kasbon, produk & stok, laporan, dan printer jalan offline di 1 perangkat. Langganan Premium menambah sinkron ke banyak perangkat, akun karyawan, cadangan cloud, dan pantau dari jauh. Bila Premium/uji coba habis tanpa Lifetime, ada masa tenggang 3 hari lalu aplikasi menjadi baca-saja — data tetap aman.\n1. Buka Pengaturan › Paket untuk melihat status, masa aktif, dan harga.\n2. Pilih produk, transfer sesuai instruksi, lalu kirim bukti + kode pesanan lewat WhatsApp.\n3. Setelah admin mencatat pembayaran, ketuk Perbarui di halaman Paket."
+  },
+  {
+   "slug": "mengganti-kata-sandi",
+   "topik": "account",
+   "judul": "Mengganti kata sandi",
+   "isi": "Khusus pemilik; karyawan memakai PIN di perangkat toko. Karyawan yang lupa kata sandi HP pribadinya: minta pemilik mengirim tautan reset dari Tim.\n1. Buka Pengaturan › Akun & keamanan, lalu di Kata sandi ketuk Ganti.\n2. Isi Kata sandi saat ini, lalu Kata sandi baru dan Ulangi kata sandi. Kata sandi baru minimal 8 karakter dan memuat huruf dan angka. Daftar lewat Google dan belum punya kata sandi? Tombolnya bertulisan Atur dan kolom Kata sandi saat ini tidak ditanyakan.\n3. Nyalakan Keluarkan perangkat lain bila perlu, lalu ketuk Simpan kata sandi.\nLupa kata sandi saat ini? Pakai Lupa kata sandi di layar masuk. Mengganti kata sandi butuh internet.",
+   "gambar": {
+    "src": "/panduan/mengganti-kata-sandi.webp",
+    "w": 1280,
+    "h": 800
+   }
+  },
+  {
+   "slug": "notifikasi-untuk-pemilik",
+   "topik": "account",
+   "judul": "Notifikasi untuk pemilik",
+   "isi": "1. Di HP pemilik, buka Pengaturan › Notifikasi.\n2. Nyalakan Terima peringatan di perangkat ini. Di tablet kasir bersama, biarkan mati.\n3. Pilih kategori yang ingin diterima: selisih kas saat tutup shift, transaksi dibatalkan atau di-refund, login di perangkat baru, stok menipis atau habis, ringkasan penjualan harian (pukul 21.00), dan paket.\nNotifikasi tidak muncul? Pastikan izin notifikasi Kasir Sakti di pengaturan HP sudah diizinkan.",
+   "gambar": {
+    "src": "/panduan/notifikasi-untuk-pemilik.webp",
+    "w": 1280,
+    "h": 800
+   }
+  }
+ ],
+ "populer": [
+  "menghubungkan-printer-struk",
+  "menerima-pembayaran-qris",
+  "impor-produk-dari-excel-atau-csv",
+  "mencatat-kasbon-melunasinya",
+  "berjualan-saat-internet-putus"
+ ]
+}

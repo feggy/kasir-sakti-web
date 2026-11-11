@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+/* Token kasirsakti.id — sama dengan aplikasi (kasir-sakti-app/lib/app/theme/app_colors.dart) & maskot (prototype/brand).
+   Final 2026-11-11 (kontras AA): brand = aksen/logo (bukan latar teks putih); teks putih di atas hijau pakai
+   brand-press (5,6:1), hover/tekan brand-deep; teks redup muted 4,8:1. */
+@theme {
+  --color-brand: #2e8b62;
+  --color-brand-press: #257552;
+  --color-brand-deep: #22704d; /* teks hijau di latar terang */
+  --color-brand-soft: #e8f5ee;
+  --color-tint: #f3faf6;
+  --color-ink: #17352a;
+  --color-body: #3c5a4e;
+  --color-muted: #61776b;
+  --color-line: #e3efe8;
+  --color-gold: #f2c76e;
+  --color-gold-soft: #fdf1d6;
+  --color-gold-deep: #8a5f0e;
+
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+
+  --animate-mengambang: mengambang 5s ease-in-out infinite;
+  --animate-muncul: muncul 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes mengambang {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes muncul {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+html { scroll-behavior: smooth; }
+body { background: #fff; color: var(--color-ink); }
+
+/* Tepi bawah bergerigi seperti kertas struk — ciri maskot. Warna dari --gerigi. */
+.gerigi { position: relative; }
+.gerigi::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -11px;
+  height: 12px;
+  background:
+    linear-gradient(-45deg, transparent 8px, var(--gerigi) 0) 0 0 / 16px 12px,
+    linear-gradient(45deg, transparent 8px, var(--gerigi) 0) 0 0 / 16px 12px;
+  z-index: 1;
+}
+
+/* Tepi atas bergerigi (footer). */
+.gerigi-atas::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -11px;
+  height: 12px;
+  background:
+    linear-gradient(135deg, transparent 8px, var(--gerigi) 0) 0 0 / 16px 12px,
+    linear-gradient(-135deg, transparent 8px, var(--gerigi) 0) 0 0 / 16px 12px;
+}
+
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+
+/* Teks halaman legal. */
+.legal { font-size: 15.5px; line-height: 1.7; color: var(--color-body); }
+.legal > * + * { margin-top: 1rem; }
+.legal h2 { margin-top: 2.5rem; font-size: 1.3rem; font-weight: 800; color: var(--color-ink); letter-spacing: -0.01em; }
+.legal h3 { margin-top: 1.5rem; font-weight: 800; color: var(--color-ink); }
+.legal ul { padding-left: 1.25rem; list-style: disc; }
+.legal li + li { margin-top: 0.4rem; }
+.legal li::marker { color: var(--color-brand); }
+.legal b { color: var(--color-ink); font-weight: 800; }
+.legal ol { padding-left: 1.25rem; list-style: decimal; }
+.legal ol li::marker { font-weight: 800; }
+/* hanya tautan teks biasa; tautan bergaya tombol (punya class) dibiarkan */
+.legal a:not([class]) { color: var(--color-brand-deep); text-decoration: underline; text-underline-offset: 3px; }
