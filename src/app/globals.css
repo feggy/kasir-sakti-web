@@ -16,6 +16,14 @@
   --color-gold: #f2c76e;
   --color-gold-soft: #fdf1d6;
   --color-gold-deep: #8a5f0e;
+  /* Panel admin (/admin): garis tegas & warna status — kontras AA di atas putih/tint-nya. */
+  --color-line-strong: #b5c8bd;
+  --color-danger: #b42318;
+  --color-danger-tint: #fef3f2;
+  --color-success: #17694a;
+  --color-success-tint: #e8f5ee;
+  --color-warning: #8a4b08;
+  --color-warning-tint: #fff6e5;
 
   --font-sans: var(--font-jakarta), system-ui, -apple-system, sans-serif;
 
@@ -84,3 +92,7 @@ details > summary::-webkit-details-marker { display: none; }
 .legal ol li::marker { font-weight: 800; }
 /* hanya tautan teks biasa; tautan bergaya tombol (punya class) dibiarkan */
 .legal a:not([class]) { color: var(--color-brand-deep); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Panel admin: kursor tangan pada kontrol; dialog modal terbuka → halaman di belakangnya tidak ikut bergulir. */
+button, a, [role="button"], input[type="button"], input[type="submit"] { cursor: pointer; }
+html:has(dialog[open]) { overflow: hidden; scrollbar-gutter: stable; }

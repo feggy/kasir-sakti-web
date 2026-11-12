@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { TombolWaMengambang } from "@/components/kerangka";
+import { WaSitus } from "@/components/WaSitus";
 import { ogDasar } from "@/seo";
 import { site } from "@/site";
 import "./globals.css";
@@ -33,7 +34,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="id" className={jakarta.variable}>
       <body className="font-sans font-medium antialiased">
         {children}
-        <TombolWaMengambang />
+        <WaSitus>
+          <TombolWaMengambang />
+        </WaSitus>
       </body>
     </html>
   );
