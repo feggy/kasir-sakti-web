@@ -124,6 +124,7 @@ export const PAYMENT_METHODS: Record<string, string> = {
 export const PAYMENT_PROVIDERS: Record<string, string> = {
   manual: "Dicatat admin",
   qrisgate: "QRIS otomatis (QRISGate)",
+  borderpay: "QRIS otomatis (BorderPay)",
 };
 
 export const LOGIN_FAIL_REASONS: Record<string, string> = {

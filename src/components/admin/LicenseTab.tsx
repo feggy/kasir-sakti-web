@@ -415,9 +415,9 @@ function PaymentsSection({
                     {p.period_start && p.period_end ? ` · ${formatDate(p.period_start)} – ${formatDate(p.period_end)}` : ""}
                   </p>
                   <p className="text-muted">
-                    {p.provider === "qrisgate" ? labelOf(PAYMENT_PROVIDERS, p.provider) : labelOf(PAYMENT_METHODS, p.method)}
+                    {p.provider !== "manual" ? labelOf(PAYMENT_PROVIDERS, p.provider) : labelOf(PAYMENT_METHODS, p.method)}
                     {p.provider_ref ? ` · ref ${p.provider_ref}` : ""}
-                    {p.recorded_by ? ` · dicatat ${p.recorded_by.name}` : p.provider === "qrisgate" ? " · tanpa admin" : ""}
+                    {p.recorded_by ? ` · dicatat ${p.recorded_by.name}` : p.provider !== "manual" ? " · tanpa admin" : ""}
                   </p>
                   {p.note && <p className="mt-0.5 text-body">“{p.note}”</p>}
                   {isVoid && (
@@ -429,7 +429,7 @@ function PaymentsSection({
                 </div>
                 <div className="hidden flex-col items-start gap-1 sm:flex">
                   {isVoid ? <Badge tone="danger">Dibatalkan</Badge> : <Badge tone="success">Sah</Badge>}
-                  {p.provider === "qrisgate" && <Badge tone="brand">Otomatis</Badge>}
+                  {p.provider !== "manual" && <Badge tone="brand">Otomatis</Badge>}
                 </div>
                 <div className="col-start-2 row-start-1 flex justify-end sm:col-start-4">
                   {voidable.has(p.id) ? (

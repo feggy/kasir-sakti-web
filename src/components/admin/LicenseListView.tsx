@@ -234,7 +234,7 @@ function LastPayment({ s }: { s: AdminLicense }) {
       </span>
       <span className="block text-[12px] text-muted">
         {formatDate(p.paid_at)} · {labelOf(PRODUCTS, p.product)}
-        {p.provider === "qrisgate" ? " · QRIS otomatis" : ""}
+        {p.provider !== "manual" ? " · QRIS otomatis" : ""}
       </span>
     </span>
   );
