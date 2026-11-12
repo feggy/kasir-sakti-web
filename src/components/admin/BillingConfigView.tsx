@@ -119,6 +119,8 @@ function ConfigForm({ config, onSaved }: { config: BillingConfig; onSaved: (c: B
     for (const k of PRICE_KEYS) if (p[k] > 100_000_000) e[`prices.${k}`] = "Maksimal Rp100.000.000.";
     if (p.online_6m > p.online_1m * 6) e["prices.online_6m"] = "Lebih mahal dari 6× harga 1 bulan — periksa lagi.";
     if (p.online_12m > p.online_1m * 12) e["prices.online_12m"] = "Lebih mahal dari 12× harga 1 bulan — periksa lagi.";
+    const reg = p.lifetime_regular ?? 0;
+    if (reg > 0 && reg <= p.lifetime) e["prices.lifetime_regular"] = "Harus lebih besar dari harga Lifetime, atau kosongkan (0).";
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -149,10 +151,16 @@ function ConfigForm({ config, onSaved }: { config: BillingConfig; onSaved: (c: B
   for (const k of PRICE_KEYS) {
     if (form.prices[k] !== initial.prices[k]) changes.push(`Harga ${PRICE_LABELS[k]} ${formatRupiah(initial.prices[k])} → ${formatRupiah(form.prices[k])}`);
   }
+  if ((form.prices.lifetime_regular ?? 0) !== (initial.prices.lifetime_regular ?? 0))
+    changes.push(
+      `Harga coret Lifetime ${formatRupiah(initial.prices.lifetime_regular ?? 0)} → ${formatRupiah(form.prices.lifetime_regular ?? 0)}`,
+    );
   if (JSON.stringify(form.bank_accounts) !== JSON.stringify(initial.bank_accounts)) changes.push(`Rekening (${form.bank_accounts.length})`);
   if (form.whatsapp !== initial.whatsapp) changes.push(`WhatsApp ${form.whatsapp || "dikosongkan"}`);
   if (form.instructions !== initial.instructions) changes.push("Teks instruksi");
-  const priceChanged = PRICE_KEYS.some((k) => form.prices[k] !== initial.prices[k]);
+  const priceChanged =
+    PRICE_KEYS.some((k) => form.prices[k] !== initial.prices[k]) ||
+    (form.prices.lifetime_regular ?? 0) !== (initial.prices.lifetime_regular ?? 0);
   const setPrice = (k: LicenseProduct, v: number) => set({ prices: { ...form.prices, [k]: v } });
 
   return (
@@ -186,6 +194,29 @@ function ConfigForm({ config, onSaved }: { config: BillingConfig; onSaved: (c: B
                 </Field>
               );
             })}
+          </div>
+          {/* Harga coret Lifetime (diskon, pemilik 2026-11-12). */}
+          <div className="mt-3 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            <Field
+              id="bc-lifetime-regular"
+              label="Harga normal Lifetime (dicoret)"
+              error={errors["prices.lifetime_regular"]}
+              hint={
+                (form.prices.lifetime_regular ?? 0) > form.prices.lifetime
+                  ? `Tampil dicoret · hemat ${Math.round(
+                      (((form.prices.lifetime_regular ?? 0) - form.prices.lifetime) * 100) /
+                        (form.prices.lifetime_regular ?? 1),
+                    )}%`
+                  : "0 = tanpa harga coret"
+              }
+            >
+              <Money
+                id="bc-lifetime-regular"
+                value={form.prices.lifetime_regular ?? 0}
+                onChange={(v) => set({ prices: { ...form.prices, lifetime_regular: v } })}
+                invalid={!!errors["prices.lifetime_regular"]}
+              />
+            </Field>
           </div>
           {priceChanged && (
             <div className="mt-3">
@@ -354,7 +385,12 @@ function AppPreview({ form }: { form: BillingConfigInput }) {
         <div className="relative mt-3 rounded-[14px] border-2 border-brand bg-white p-3">
           <span className="absolute -top-2.5 right-3 rounded-full bg-brand-press px-2 py-0.5 text-[10.5px] font-semibold text-white">Rekomendasi</span>
           <p className="text-[12px] font-semibold text-muted">Lifetime</p>
-          <p className="text-[18px] font-bold tabular-nums">{formatRupiah(p.lifetime)}</p>
+          <p className="flex items-baseline gap-2">
+            {(p.lifetime_regular ?? 0) > p.lifetime && (
+              <span className="text-[13px] text-muted line-through tabular-nums">{formatRupiah(p.lifetime_regular ?? 0)}</span>
+            )}
+            <span className="text-[18px] font-bold tabular-nums">{formatRupiah(p.lifetime)}</span>
+          </p>
           <p className="text-[11.5px] text-body">Sekali bayar · 1 HP, bisa gantian karyawan pakai PIN</p>
         </div>
         <div className="mt-2 rounded-[18px] border border-line bg-white shadow-[0_1px_2px_rgb(23_53_42/0.04)] p-3">

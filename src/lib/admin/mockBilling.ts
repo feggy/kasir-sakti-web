@@ -152,7 +152,7 @@ export function publicPayment(p: PaymentRecord): AdminPayment {
 // ——— Pembuatan data ———
 
 /** Harga bawaan (desain lisensi §1). */
-export const PRICES: Prices = { lifetime: 199_000, online_1m: 49_000, online_6m: 269_000, online_12m: 490_000 };
+export const PRICES: Prices = { lifetime: 145_000, lifetime_regular: 199_000, online_1m: 49_000, online_6m: 269_000, online_12m: 490_000 };
 
 export function makeBillingConfig(): BillingConfig {
   return {

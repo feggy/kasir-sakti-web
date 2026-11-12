@@ -522,7 +522,8 @@ export type OverridesInput = { outlet_quota: number | null; note: string };
 
 export type BankAccount = { bank: string; number: string; holder: string };
 
-export type Prices = Record<LicenseProduct, number>;
+/** `lifetime_regular` = harga normal Lifetime yang dicoret saat diskon (0 = tanpa harga coret). */
+export type Prices = Record<LicenseProduct, number> & { lifetime_regular?: number };
 
 export type BillingConfig = {
   prices: Prices;
