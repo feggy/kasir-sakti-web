@@ -9,7 +9,7 @@
   * { box-sizing: border-box; margin: 0; }
   body { width: 1200px; height: 630px; overflow: hidden; font-family: Jakarta, sans-serif; color: #17352a;
     background: #f3faf6 radial-gradient(#cfe6d9 1.5px, transparent 1.5px) 0 0 / 26px 26px; position: relative; }
-  .kiri { position: absolute; left: 72px; top: 64px; width: 590px; }
+  .kiri { position: absolute; left: 72px; top: 64px; width: 620px; }
   .logo { height: 54px; }
   h1 { margin-top: 30px; font-size: 60px; line-height: 1.04; font-weight: 800; letter-spacing: -0.035em; }
   h1 span { color: #2e8b62; }
@@ -20,12 +20,9 @@
   .harga i { font-style: normal; font-size: 18px; font-weight: 800; color: #8a5f0e; background: #fdf1d6; padding: 6px 10px; border-radius: 9px; }
   .bawah { position: absolute; left: 72px; bottom: 52px; display: flex; gap: 26px; font-size: 22px; color: #3c5a4e; }
   .bawah b { color: #22704d; }
-  /* Panel maskot 3D baru (latar hijau bawaan render AI ≈ hijau merek; tidak dipotong karena kemeja sewarna latar). */
-  .panel { position: absolute; right: 0; top: 0; bottom: 0; width: 500px; overflow: hidden;
-    background: radial-gradient(circle at 55% 45%, #3a9c68 0, #2d8e5a 62%); }
-  /* Gambar maskot memudar ke warna panel (= latar render AI #2d8e5a) supaya tak ada sambungan. */
-  .panel img { position: absolute; left: -22px; top: 20px; width: 580px; height: 580px;
-    -webkit-mask-image: radial-gradient(closest-side, #000 82%, transparent 100%); mask-image: radial-gradient(closest-side, #000 82%, transparent 100%); }
+  /* Maskot 3D transparan (src/assets/maskot/melambai.webp) langsung di latar terang + bayangan lembut. */
+  .maskot { position: absolute; right: 70px; bottom: 34px; height: 540px;
+    filter: drop-shadow(0 18px 22px rgba(23,53,42,.16)); }
 </style>
 </head>
 <body>
@@ -35,6 +32,6 @@
     <div class="harga"><s>Rp199.000</s><b>Rp145.000</b><i>sekali bayar</i></div>
   </div>
   <div class="bawah"><span>Gratis coba <b>14 hari</b></span><span>·</span><span><b>kasirsakti.id</b></span></div>
-  <div class="panel"><img src="maskot-melambai.jpg" alt=""></div>
+  <img class="maskot" src="../../src/assets/maskot/melambai.webp" alt="">
 </body>
 </html>
