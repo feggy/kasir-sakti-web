@@ -247,13 +247,13 @@ function Fitur() {
     { ikon: Clock, judul: "Buka & tutup shift", isi: "Uang di laci dicocokkan dengan transaksi setiap ganti shift." },
   ];
   return (
-    <section id="fitur" className="scroll-mt-20 bg-tint py-24 lg:py-32">
+    <section id="fitur" className="scroll-mt-20 bg-tint pt-14 pb-24 lg:pt-16 lg:pb-32">
       <div className={wadah}>
         <div className="grid items-end gap-6 sm:grid-cols-[1fr_auto]">
           <Judul label="Fitur" sub="Dibuat untuk warung, kedai kopi, dan toko kecil. Menunya sedikit, tombolnya besar, langsung paham.">
             Semua yang warung butuhkan, di satu HP.
           </Judul>
-          <Maskot src={pegangHp} sizes="(min-width: 640px) 260px, 56vw" className="mx-auto w-[56%] max-w-[260px] sm:mr-0 sm:w-[260px]" />
+          <Maskot src={pegangHp} sizes="(min-width: 640px) 190px, 46vw" className="mx-auto w-[46%] max-w-[190px] sm:mr-0 sm:w-[190px]" />
         </div>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
