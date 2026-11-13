@@ -88,6 +88,12 @@ Saat ditinjau 2026-11-11, isinya:
 
 ## Selesai
 
+- 2026-11-13 — **Merek baru: logo sayap angin & maskot 3D berkacamata** (Claude Opus 5.5; disetujui pemilik). Header =
+  logo ringkas (sayap + "Kasir / Sakti"), footer = logo satu baris putih (`public/logo-putih.svg`); ikon situs/PWA/
+  apple-icon = sayap + "Sakti"; favicon `src/app/icon.svg` = sayap putih di lingkaran hijau. 10 maskot
+  `src/assets/maskot/*.webp` diganti pose 3D baru (sumber `../prototype/maskot3d/pose/web/`, dipotong
+  `../prototype/generator/potong_pose.py`, dikonversi `scripts/siapkan_maskot.py`); tata letak pusing/offline/lompat
+  disesuaikan. `og.png` = logo baru + maskot transparan. Sumber logo: `../prototype/generator/logo_sayap.py`.
 - 2026-11-13 — **Situs online di `https://kasirsakti.id`** (Vercel, Production Branch `main`; DNS Domainesia: `@` A
   Vercel, `www` CNAME `cname.vercel-dns.com`). Panel admin di `kasirsakti.id/admin` (server `ADMIN_ORIGINS` +
   `WEB_BASE_URL=https://kasirsakti.id`, admin pertama dibuat). Google Search Console: properti Domain terverifikasi (TXT),
