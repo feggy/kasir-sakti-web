@@ -770,7 +770,7 @@ function AjakanAkhir() {
             </a>
           </div>
         </div>
-        <Maskot src={lompat} sizes="(min-width: 1024px) 420px, 80vw" className="relative mx-auto mt-6 w-[80%] max-w-[420px] lg:mt-10 lg:mb-[-8px]" />
+        <Maskot src={lompat} sizes="(min-width: 1024px) 420px, 80vw" className="relative mx-auto mt-6 mb-8 w-[80%] max-w-[400px] lg:mt-10 lg:mb-10" />
       </div>
     </section>
   );
