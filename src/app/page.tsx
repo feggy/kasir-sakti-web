@@ -186,7 +186,7 @@ function Masalah() {
       </Judul>
       <div className="mt-24 grid gap-5 lg:grid-cols-2">
         <div className="relative rounded-[28px] bg-[#fbf3ef] p-6 pt-8 ring-1 ring-[#f3dfd6] sm:p-9">
-          <Maskot src={pusing} sizes="170px" className="absolute -top-20 right-4 w-[130px] sm:-top-24 sm:right-8 sm:w-[170px]" />
+          <Maskot src={pusing} sizes="120px" className="absolute -top-[80px] right-4 w-[100px] sm:-top-[96px] sm:right-8 sm:w-[120px]" />
           <div className="flex items-center gap-3">
             <span className="inline-flex size-10 items-center justify-center rounded-xl bg-white text-[#d0644b] ring-1 ring-[#f3dfd6]">
               <BookOpen className="size-5" aria-hidden />
@@ -399,7 +399,7 @@ function TanpaInternet() {
         </div>
         <div className="relative">
           <div className="absolute inset-x-[12%] bottom-[6%] h-[40%] rounded-full bg-brand/40 blur-3xl" aria-hidden />
-          <Maskot src={offline} sizes="(min-width: 1024px) 480px, 90vw" className="relative mx-auto w-[92%] max-w-[480px]" />
+          <Maskot src={offline} sizes="(min-width: 1024px) 360px, 70vw" className="relative mx-auto w-[70%] max-w-[360px]" />
         </div>
       </div>
     </section>
