@@ -453,13 +453,13 @@ function Harga() {
   const durasi = Object.entries(site.hargaPremium) as [string, number][];
   const perBulan = site.hargaPremium["1 bulan"];
   return (
-    <section id="harga" className="scroll-mt-20 bg-tint py-24 lg:py-32">
+    <section id="harga" className="scroll-mt-20 bg-tint pt-14 pb-24 lg:pt-16 lg:pb-32">
       <div className={wadah}>
         <div className="grid items-end gap-6 sm:grid-cols-[1fr_auto]">
           <Judul label="Harga" sub={`Coba ${site.hariUjiCoba} hari gratis dengan semua fitur, termasuk Premium. Cocok, baru bayar.`}>
             Bayar sekali, pakai selamanya.
           </Judul>
-          <Maskot src={koin} sizes="(min-width: 640px) 300px, 64vw" className="mx-auto w-[64%] max-w-[300px] sm:mr-0 sm:w-[300px]" />
+          <Maskot src={koin} sizes="(min-width: 640px) 210px, 50vw" className="mx-auto w-[50%] max-w-[210px] sm:mr-0 sm:w-[210px]" />
         </div>
 
         <div className="mt-12 grid gap-5 lg:grid-cols-[1.25fr_0.75fr]">
