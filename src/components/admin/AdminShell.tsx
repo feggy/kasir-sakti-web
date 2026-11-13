@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
+  BellRing,
   Bug,
   ChartLine,
   TrendingUp,
@@ -49,6 +50,7 @@ const NAV_GROUPS = [
     label: "Pendapatan",
     items: [
       { href: "/admin/lisensi", label: "Lisensi", short: "Lisensi", icon: CreditCard },
+      { href: "/admin/lisensi/peringatan", label: "Peringatan bayar", short: "Peringatan", icon: BellRing },
       { href: "/admin/lisensi/pengaturan", label: "Harga & cara bayar", short: "Harga", icon: Wallet },
     ],
   },

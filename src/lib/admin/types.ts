@@ -84,6 +84,8 @@ export type Summary = {
   businesses_active_30d?: number;
   licenses?: PlanCounts;
   revenue_this_month?: number;
+  /** Peringatan pembayaran paket yang belum ditandai selesai (aditif 2026-11-13). */
+  open_payment_alerts?: number;
 };
 
 export type AuditEntry = {
@@ -577,3 +579,23 @@ export type Metrics = {
 };
 
 export type MetricsQuery = { from?: string; to?: string; interval?: MetricsInterval };
+
+// ——— Peringatan pembayaran paket (GET /admin/license-payment-alerts, aditif 2026-11-13) ———
+
+export type PaymentAlertKind = "amount_mismatch" | "lifetime_exists" | "gateway_credit" | "gateway_error" | "webhook_rejected";
+export type PaymentAlertStatus = "open" | "all";
+
+export type PaymentAlert = {
+  id: string;
+  /** Mis. `borderpay`, `qrisgate`. */
+  provider: string;
+  reference: string | null;
+  checkout_id: string | null;
+  business_id: string | null;
+  business_name: string | null;
+  kind: PaymentAlertKind | (string & {});
+  detail: string | null;
+  amount: number | null;
+  created_at: string;
+  resolved_at: string | null;
+};

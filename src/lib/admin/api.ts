@@ -51,6 +51,8 @@ import type {
   LicenseFacets,
   LicensePaymentResult,
   LicenseQuery,
+  PaymentAlert,
+  PaymentAlertStatus,
 } from "./types";
 
 export const ADMIN_MOCK = process.env.NEXT_PUBLIC_ADMIN_MOCK === "1";
@@ -99,6 +101,10 @@ export interface AdminApi {
   saveOverrides(businessId: string, body: OverridesInput): Promise<void>;
   billingConfig(signal?: AbortSignal): Promise<BillingConfig>;
   saveBillingConfig(body: BillingConfigInput): Promise<BillingConfig>;
+  /** Terbaru dulu, maks 100. */
+  paymentAlerts(status: PaymentAlertStatus, signal?: AbortSignal): Promise<PaymentAlert[]>;
+  /** Idempoten. */
+  resolvePaymentAlert(id: string): Promise<void>;
 }
 
 const ADMIN_BASE = `${API_BASE_URL}/admin`;
@@ -379,6 +385,11 @@ const httpApi: AdminApi = {
   },
   billingConfig: async (signal) => (await call<BillingConfig>("GET", "/billing-config", { signal })).data,
   saveBillingConfig: async (body) => (await call<BillingConfig>("PUT", "/billing-config", { body })).data,
+  paymentAlerts: async (status, signal) =>
+    (await call<PaymentAlert[]>("GET", `/license-payment-alerts${qs({ status })}`, { signal })).data ?? [],
+  resolvePaymentAlert: async (id) => {
+    await call<unknown>("POST", `/license-payment-alerts/${enc(id)}/resolve`, { body: {} });
+  },
 };
 
 let mockApi: Promise<AdminApi> | null = null;

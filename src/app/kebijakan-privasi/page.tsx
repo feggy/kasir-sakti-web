@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function KebijakanPrivasi() {
   const wa = `https://wa.me/${site.whatsapp}`;
   return (
-    <HalamanLegal judul="Kebijakan Privasi" berlaku="11 November 2026">
+    <HalamanLegal judul="Kebijakan Privasi" berlaku="13 November 2026">
       <p>
         Kebijakan ini menjelaskan data apa yang dikumpulkan oleh aplikasi <b>Kasir Sakti</b> dan situs kasirsakti.id, untuk apa data itu
         dipakai, dan bagaimana kamu bisa mengendalikannya. Kasir Sakti dikembangkan dan dikelola oleh <b>{site.pembuat}</b> (&quot;kami&quot;).
@@ -120,12 +120,12 @@ export default function KebijakanPrivasi() {
       </ul>
       <p>
         Untuk meminta penghapusan akun atau data, ikuti langkah di halaman <Link href="/hapus-akun">Hapus Akun</Link> atau hubungi kami
-        lewat <a href={wa}>WhatsApp</a> dari nomor yang terdaftar. Kami memproses permintaan paling lambat 14 hari kerja. Data yang tersimpan di perangkatmu bisa kamu hapus sendiri dengan menghapus aplikasi.
+        lewat <a href={wa}>WhatsApp</a> dari nomor yang terdaftar. Setelah dikonfirmasi, akun dihapus permanen 14 hari kemudian (masuk lagi ke aplikasi sebelum itu membatalkannya). Data yang tersimpan di perangkatmu bisa kamu hapus sendiri dengan menghapus aplikasi.
       </p>
 
       <h2>6. Situs kasirsakti.id</h2>
       <p>
-        Situs ini tidak memakai cookie pelacak atau alat analitik, dan tidak memiliki formulir. Penyedia hosting situs dapat mencatat log
+        Situs ini tidak memakai cookie pelacak atau alat analitik. Satu-satunya formulir ada di halaman Hapus Akun: email atau nomor HP dan kode yang kamu isi dikirim langsung ke server Kasir Sakti untuk memproses penghapusan. Penyedia hosting situs dapat mencatat log
         teknis standar (alamat IP, jenis peramban, waktu akses) untuk keamanan dan menjaga situs tetap berjalan.
       </p>
 

@@ -54,6 +54,7 @@ import type {
   BusinessDetail,
   BusinessSummary,
   CrashGroup,
+  PaymentAlert,
   Release,
   SecurityReport,
 } from "./types";
@@ -74,6 +75,7 @@ type State = {
   deletions: AccountDeletion[];
   security: SecurityReport[];
   billing: BillingState;
+  alerts: PaymentAlert[];
 };
 
 function initialState(): State {
@@ -94,7 +96,27 @@ function initialState(): State {
     deletions,
     security: makeSecurityReports(businesses),
     billing,
+    alerts: makePaymentAlerts(businesses),
   };
+}
+
+/** Peringatan pembayaran paket contoh: tiap `kind` ≥ 1 terbuka, beberapa sudah selesai; terbaru dulu. */
+function makePaymentAlerts(businesses: BusinessDetail[]): PaymentAlert[] {
+  const b = (i: number) => businesses[i % businesses.length];
+  const H = 3_600_000;
+  const at = (hoursAgo: number) => new Date(Date.now() - hoursAgo * H).toISOString();
+  const rows: Omit<PaymentAlert, "id">[] = [
+    { provider: "borderpay", reference: "BP-20261113-7Q2K", checkout_id: "chk_7q2k", business_id: b(2).id, business_name: b(2).name, kind: "amount_mismatch", detail: "Dibayar Rp140.000, tagihan Rp145.000 (Lifetime).", amount: 140_000, created_at: at(2), resolved_at: null },
+    { provider: "qrisgate", reference: "QG-88412", checkout_id: "chk_88412", business_id: b(5).id, business_name: b(5).name, kind: "lifetime_exists", detail: "Bisnis sudah punya Lifetime aktif; pembayaran Lifetime kedua tidak dicatat.", amount: 145_000, created_at: at(5), resolved_at: null },
+    { provider: "borderpay", reference: "BP-20261113-1M9X", checkout_id: null, business_id: null, business_name: null, kind: "gateway_credit", detail: "Dana masuk tanpa checkout yang cocok.", amount: 49_000, created_at: at(9), resolved_at: null },
+    { provider: "qrisgate", reference: null, checkout_id: "chk_ab31", business_id: b(7).id, business_name: b(7).name, kind: "gateway_error", detail: "Gateway menjawab 502 saat membuat QRIS.", amount: 269_000, created_at: at(20), resolved_at: null },
+    { provider: "borderpay", reference: "BP-unknown-4471", checkout_id: null, business_id: null, business_name: null, kind: "webhook_rejected", detail: "Tanda tangan webhook tidak valid.", amount: null, created_at: at(30), resolved_at: null },
+    { provider: "borderpay", reference: "BP-20261111-5T0A", checkout_id: "chk_5t0a", business_id: b(3).id, business_name: b(3).name, kind: "amount_mismatch", detail: "Dibayar Rp500.000, tagihan Rp490.000 (Premium 12 bulan).", amount: 500_000, created_at: at(52), resolved_at: at(40) },
+    { provider: "qrisgate", reference: "QG-87001", checkout_id: "chk_87001", business_id: b(1).id, business_name: b(1).name, kind: "gateway_credit", detail: "Pembayaran tercatat di gateway tetapi checkout sudah kedaluwarsa.", amount: 145_000, created_at: at(75), resolved_at: at(70) },
+    { provider: "borderpay", reference: null, checkout_id: "chk_q9re", business_id: b(4).id, business_name: b(4).name, kind: "gateway_error", detail: "Timeout 10 detik ke gateway.", amount: 49_000, created_at: at(100), resolved_at: at(98) },
+    { provider: "qrisgate", reference: "QG-replay-11", checkout_id: null, business_id: null, business_name: null, kind: "webhook_rejected", detail: "Webhook ulang (replay) di luar jendela waktu.", amount: null, created_at: at(130), resolved_at: at(129) },
+  ];
+  return rows.map((r, i) => ({ id: `pa-${String(i + 1).padStart(4, "0")}`, ...r }));
 }
 
 /** Entri audit untuk pembayaran contoh 45 hari terakhir (agar tab Lisensi & Audit tidak kosong). */
@@ -370,6 +392,7 @@ export function createMockApi(onUnauthorized: () => void, onPasswordChange: () =
         businesses_active_30d: s.businesses.filter((b) => activeWithin(b, 30)).length,
         licenses: currentPlans(s.businesses, s.billing),
         revenue_this_month: revenueThisMonth(s.billing),
+        open_payment_alerts: s.alerts.filter((a) => !a.resolved_at).length,
       };
     },
     async auditPage(q) {
@@ -1148,6 +1171,25 @@ export function createMockApi(onUnauthorized: () => void, onPasswordChange: () =
         after: { prices: body.prices, bank_accounts: body.bank_accounts.length },
       });
       return db().billing.config;
+    },
+
+    // ——— Peringatan pembayaran paket ———
+    async paymentAlerts(status) {
+      await guard();
+      const rows = db().alerts.filter((a) => status === "all" || !a.resolved_at);
+      return rows
+        .slice()
+        .sort((a, b) => b.created_at.localeCompare(a.created_at))
+        .slice(0, 100)
+        .map((a) => ({ ...a }));
+    },
+    async resolvePaymentAlert(id) {
+      await guard();
+      const a = db().alerts.find((x) => x.id === id);
+      if (!a) throw new ApiError("Peringatan tidak ditemukan.", 404, "NOT_FOUND");
+      if (a.resolved_at) return; // idempoten
+      a.resolved_at = new Date().toISOString();
+      log("license.payment_alert_resolve", "payment_alert", id, { kind: a.kind, provider: a.provider });
     },
   };
 }

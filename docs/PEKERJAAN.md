@@ -7,8 +7,9 @@ Perbarui di akhir setiap sesi. Cara menjalankan & membuat ulang aset: `README.md
 - **Teks legal** (`/kebijakan-privasi`, `/syarat-ketentuan`, `/hapus-akun`) — ditulis Claude 2026-11-11 dari perilaku
   aplikasi (izin Android, Firebase, Google Sign-In, sinkron saat uji coba/Premium, bcrypt). Keputusan Claude yang
   **wajib disetujui pemilik**: pembayaran tidak dapat dikembalikan (kecuali bayar ganda); batas tanggung jawab =
-  pembayaran 12 bulan terakhir; hapus akun ≤14 hari kerja, cadangan ≤30 hari, Lifetime hangus; batas usia 17 tahun;
-  "selamanya" = selama aplikasi dioperasikan.
+  pembayaran 12 bulan terakhir; hapus akun permanen 14 hari setelah konfirmasi (masuk lagi = batal), Lifetime & sisa
+  Premium hangus; batas usia 17 tahun; "selamanya" = selama aplikasi dioperasikan. `/hapus-akun` & Kebijakan Privasi
+  diperbarui 2026-11-13 (lihat Selesai).
 - **Screenshot aplikasi belum direviu pemilik** (aplikasi sendiri belum direviu). Lihat "Screenshot" di bawah.
 
 ## Berikutnya
@@ -19,6 +20,12 @@ Perbarui di akhir setiap sesi. Cara menjalankan & membuat ulang aset: `README.md
    Premium 1-6-12 bln, batalkan, tambah hari, kuota outlet), Harga & cara bayar (4 harga + pratinjau halaman Paket),
    Ringkasan, Metrik. Lalu uji terhadap server dev: `NEXT_PUBLIC_API_BASE_URL=http://localhost:8080/api/v1`, server
    `ADMIN_ORIGINS=http://localhost:3200` (bawaan `.env` = 3000), admin pertama `go run ./cmd/admin create …`.
+0a. **P1 · Langkah pemilik — hapus akun web**: origin situs (`https://kasirsakti.id`, plus `https://www.kasirsakti.id`
+   bila dipakai) **wajib** ada di `CORS_ORIGINS` server produksi, kalau tidak formulir `/hapus-akun` gagal ("Tidak dapat
+   terhubung ke server"). SMTP produksi harus jalan (kode OTP dikirim ke email). Uji sekali dengan akun uji sungguhan.
+0b. **P1 · Tinjau peringatan pembayaran admin** (`/admin/lisensi/peringatan`, 2026-11-13) setelah server memasang
+   `GET /admin/license-payment-alerts` + `…/{id}/resolve` + `open_payment_alerts` di ringkasan. Cocokkan nama aksi audit
+   (web menebak `license.payment_alert_resolve`, target `payment_alert` — `labels.ts`).
 1. **P1 · Link Play Store** — semua tombol menuju `play.google.com/...id=id.kasirsakti.app`. Sebelum aplikasi terbit,
    link itu 404. Pilih: buka situs setelah aplikasi terbit, **atau** mode "segera hadir" sementara (tombol → WhatsApp).
 2. **P1 · Commit + deploy** — Vercel, DNS `kasirsakti.id`, Search Console + `sitemap.xml`.
@@ -69,10 +76,32 @@ Saat ditinjau 2026-11-11, isinya:
   belum di-porting (server punya `/owner/*`, `/staff/*`).
 - Video demo pendek (15–30 detik) dari layar asli.
 - Testimoni — **hanya** dari pengguna sungguhan.
-- Setelah fitur hapus akun di aplikasi jadi (backlog P1 di `kasir-sakti-app/docs/PEKERJAAN.md`): tambah langkah
-  "hapus dari aplikasi" di `/hapus-akun`.
+- **Cadangan server & hapus akun**: `/hapus-akun` hanya menulis kalimat netral ("ikut terhapus saat cadangan lama dibuang
+  sesuai jadwal penyimpanan cadangan"). Skrip `deploy/backup.sh` service menyimpan lokal 14 hari & Drive
+  `BACKUP_REMOTE_KEEP_DAYS` (bawaan 30), tetapi backup otomatis untuk VPS bersama **belum** jalan (PEKERJAAN service).
+  Setelah backup terjadwal & masa simpannya pasti, boleh tulis angka (mis. "≤ 30 hari") di `/hapus-akun` & Kebijakan
+  Privasi. Bukti bayar paket memang disimpan (`subscription_payment_archive`, tanpa email/HP) — sudah ditulis; masa
+  simpannya belum diatur kode (tidak ada purge arsip), jadi halaman tidak menjanjikan kapan dihapus.
+- Panel admin › Antrean hapus akun: data tiruan masih memakai masa tunggu 30 hari (server kini 14 hari).
+- Peringatan pembayaran: tab "Terbuka" hanya menghitung saat aktif (server tidak mengirim facet); filter per `kind`/
+  provider belum ada (cukup selama ≤ 100 baris).
 
 ## Selesai
+
+- 2026-11-13 — **Hapus akun lewat web tanpa proses manual** (Claude Opus 5.5; kebijakan Google Play). `/hapus-akun`
+  memakai `POST /account/deletion/request` + `/confirm` (`src/lib/hapusAkun.ts`, formulir `FormHapusAkun.tsx`):
+  email/No. HP → kode 6 digit ke email akun → centang pernyataan → "Hapus akun saya" → tanggal hapus permanen.
+  Anti-enumerasi: teks setelah kirim kode sama untuk akun ada/tidak ("Bila … terdaftar"), `masked_destination` tidak
+  ditampilkan, galat OTP netral. Teks disamakan: permanen 14 hari setelah konfirmasi, masuk lagi = batal, Lifetime &
+  sisa Premium hangus, langkah "Pengaturan › Akun › Hapus akun", WA/email tetap sebagai bantuan; janji "cadangan ≤ 30
+  hari" diganti kalimat netral (lihat Backlog). Kebijakan Privasi ikut (14 hari; situs kini punya satu formulir).
+  Mode tiruan `NEXT_PUBLIC_HAPUS_AKUN_MOCK=1` (kode `123456`, `000000` kedaluwarsa, isian "batas" → 429).
+- 2026-11-13 — **Peringatan pembayaran paket di panel admin**: `/admin/lisensi/peringatan` (menu "Peringatan bayar" di
+  bawah Lisensi) — tab Terbuka/Semua, label & tindakan admin per `kind` (`PAYMENT_ALERT_KINDS`), tautan ke tab Lisensi
+  bisnis, "Tandai selesai" + dialog konfirmasi; Ringkasan menampilkan kartu merah + butir "Perlu perhatian" bila
+  `open_payment_alerts` > 0. Klien `paymentAlerts`/`resolvePaymentAlert`, data tiruan 9 contoh (semua `kind`).
+  Verifikasi: `eslint`, `tsc`, `next build` hijau; dev + mock: halaman merender (HTML/curl). **Belum** dicoba klik di
+  browser & belum terhadap server sungguhan.
 
 - 2026-11-12 — **QRIS otomatis**: halaman `/bayar/selesai` (return_url QRISGate; noindex, robots disallow `/bayar`);
   admin › tab Lisensi menandai pembayaran QRISGate ("QRIS otomatis (QRISGate)", lencana Otomatis, "tanpa admin");

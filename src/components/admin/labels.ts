@@ -21,6 +21,8 @@ export const AUDIT_ACTIONS: Record<string, string> = {
   "license.override": "Ubah kuota outlet",
   "license.launch_trial": "Peluncuran uji coba",
   "billing_config.update": "Ubah harga & cara bayar",
+  // Nama aksi belum ditetapkan kontrak server — dipakai data tiruan; sesuaikan bila server memakai nama lain.
+  "license.payment_alert_resolve": "Tandai peringatan pembayaran selesai",
   // Aksi warisan (riwayat lama, model langganan sebelum 2026-11-08).
   "subscription.payment": "Catat pembayaran (lama)",
   "subscription.payment_void": "Batalkan pembayaran (lama)",
@@ -68,6 +70,7 @@ export const TARGET_TYPES: Record<string, string> = {
   business: "Bisnis",
   crash: "Crash",
   billing_config: "Harga & cara bayar",
+  payment_alert: "Peringatan pembayaran",
 };
 
 /** Plan lisensi (6 nilai kontrak). Paket berlangganan tampil sebagai "Premium" (pengenal teknis tetap `online`). */
@@ -125,6 +128,30 @@ export const PAYMENT_PROVIDERS: Record<string, string> = {
   manual: "Dicatat admin",
   qrisgate: "QRIS otomatis (QRISGate)",
   borderpay: "QRIS otomatis (BorderPay)",
+};
+
+/** Jenis peringatan pembayaran paket (`PaymentAlert.kind`): label + tindakan admin. */
+export const PAYMENT_ALERT_KINDS: Record<string, { label: string; hint: string }> = {
+  amount_mismatch: {
+    label: "Nominal tidak cocok",
+    hint: "Jumlah yang dibayar berbeda dengan tagihan, jadi paket tidak aktif otomatis. Cek mutasi di dasbor gateway, lalu catat pembayaran manual di tab Lisensi bisnis atau kembalikan dana.",
+  },
+  lifetime_exists: {
+    label: "Sudah punya Lifetime",
+    hint: "Bisnis membayar Lifetime padahal sudah punya. Pembayaran tidak dicatat; hubungi pemilik untuk pengembalian dana atau tawarkan Premium.",
+  },
+  gateway_credit: {
+    label: "Dana masuk tanpa pesanan",
+    hint: "Gateway melaporkan dana masuk yang tidak bisa dicocokkan dengan pesanan aktif. Cari pemiliknya lewat referensi, lalu catat manual atau kembalikan dana.",
+  },
+  gateway_error: {
+    label: "Gangguan gateway",
+    hint: "Server gagal berbicara dengan gateway pembayaran. Cek status gateway; bila pemilik sudah membayar, pastikan paketnya aktif.",
+  },
+  webhook_rejected: {
+    label: "Webhook ditolak",
+    hint: "Notifikasi dari gateway ditolak (tanda tangan/waktu tidak sah). Bila berulang, periksa rahasia webhook di server; bila ada dana masuk, cocokkan manual.",
+  },
 };
 
 export const LOGIN_FAIL_REASONS: Record<string, string> = {

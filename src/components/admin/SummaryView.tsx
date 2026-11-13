@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
   Activity,
   ArrowRight,
+  BellRing,
   Bug,
   CalendarClock,
   ChartLine,
@@ -83,6 +84,7 @@ export function SummaryView() {
           </>
         }
       />
+      {!!state.data?.summary.open_payment_alerts && <PaymentAlertsBanner count={state.data.summary.open_payment_alerts} />}
       <div className="mb-8">
         <MerchantOverview
           attention={
@@ -107,6 +109,9 @@ export function SummaryView() {
 function AttentionCard({ summary }: { summary: Summary }) {
   const items: { icon: React.ReactNode; title: string; hint: string; href: string; tone: "warning" | "danger" }[] = [];
   const lic = summary.licenses;
+  const alerts = summary.open_payment_alerts ?? 0;
+  if (alerts > 0)
+    items.push({ icon: <BellRing size={16} aria-hidden />, title: `${alerts} peringatan pembayaran terbuka`, hint: "QRIS otomatis gagal diproses — cek & tandai selesai", href: "/admin/lisensi/peringatan", tone: "danger" });
   if (lic && lic.expiring_7d > 0)
     items.push({ icon: <CalendarClock size={16} aria-hidden />, title: `${lic.expiring_7d} lisensi berakhir ≤ 7 hari`, hint: "Uji coba & Premium — hubungi sebelum habis", href: "/admin/lisensi?expiring=7d", tone: "warning" });
   if (lic && lic.grace > 0)
@@ -127,7 +132,7 @@ function AttentionCard({ summary }: { summary: Summary }) {
         <div className="flex flex-col items-center py-4 text-center">
           <Maskot pose="dasar" size={84} />
           <p className="mt-1 text-[14px] font-extrabold text-ink">Semua aman</p>
-          <p className="text-[13px] text-muted">Tidak ada lisensi hampir habis, crash baru, atau hapus akun mendesak.</p>
+          <p className="text-[13px] text-muted">Tidak ada peringatan pembayaran, lisensi hampir habis, crash baru, atau hapus akun mendesak.</p>
         </div>
       ) : (
         <ul className="flex flex-col">
@@ -150,6 +155,32 @@ function AttentionCard({ summary }: { summary: Summary }) {
         </ul>
       )}
     </Section>
+  );
+}
+
+/** Kartu mencolok di atas Ringkasan bila ada peringatan pembayaran paket yang belum ditindak. */
+function PaymentAlertsBanner({ count }: { count: number }) {
+  return (
+    <Link
+      href="/admin/lisensi/peringatan"
+      className={`group mb-5 flex items-center gap-3 rounded-[18px] border border-danger/25 bg-danger-tint px-4 py-3.5 transition-colors hover:border-danger/50 sm:px-5 ${focusRing}`}
+    >
+      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] bg-white text-danger">
+        <BellRing size={18} aria-hidden />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block text-[15px] font-extrabold text-danger">
+          {count.toLocaleString("id-ID")} peringatan pembayaran paket terbuka
+        </span>
+        <span className="block text-[13px] text-body">
+          Pembayaran QRIS otomatis yang tidak bisa diproses server — mungkin ada pemilik yang sudah bayar tetapi paketnya belum aktif.
+        </span>
+      </span>
+      <span className="hidden shrink-0 items-center gap-1 text-[13px] font-semibold text-danger sm:inline-flex">
+        Lihat <ArrowRight size={14} aria-hidden />
+      </span>
+      <ChevronRight size={16} aria-hidden className="shrink-0 text-danger sm:hidden" />
+    </Link>
   );
 }
 
