@@ -22,7 +22,7 @@ npm run build      # cek semua rute tetap statis (○)
 | `/kontak` | WhatsApp, email, alamat | |
 | `/kebijakan-privasi` | Kebijakan privasi | **URL dipakai aplikasi** (`Env.privacyUrl`) — jangan dipindah |
 | `/syarat-ketentuan` | Syarat & ketentuan | **URL dipakai aplikasi** (`Env.termsUrl`) — jangan dipindah |
-| `/hapus-akun` | Cara meminta hapus akun | **URL didaftarkan di Play Console** (Data safety) — jangan dipindah |
+| `/hapus-akun` | Hapus akun (langkah di aplikasi + formulir OTP email lewat `POST /account/deletion/*`) | **URL didaftarkan di Play Console** (Data safety) — jangan dipindah. Origin situs wajib ada di `CORS_ORIGINS` server. Coba tanpa server: `NEXT_PUBLIC_HAPUS_AKUN_MOCK=1 npm run dev` (kode `123456`) |
 | 404 | `src/app/not-found.tsx` | maskot pose `cari` |
 
 Juga: `sitemap.xml`, `robots.txt`, `manifest.webmanifest`, `icon.svg`, `apple-icon.png`, `public/og.png`.
