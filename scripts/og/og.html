@@ -9,9 +9,9 @@
   * { box-sizing: border-box; margin: 0; }
   body { width: 1200px; height: 630px; overflow: hidden; font-family: Jakarta, sans-serif; color: #17352a;
     background: #f3faf6 radial-gradient(#cfe6d9 1.5px, transparent 1.5px) 0 0 / 26px 26px; position: relative; }
-  .kiri { position: absolute; left: 72px; top: 64px; width: 640px; }
-  .logo { height: 64px; margin-left: -10px; }
-  h1 { margin-top: 30px; font-size: 64px; line-height: 1.04; font-weight: 800; letter-spacing: -0.035em; }
+  .kiri { position: absolute; left: 72px; top: 64px; width: 620px; }
+  .logo { height: 54px; }
+  h1 { margin-top: 30px; font-size: 60px; line-height: 1.04; font-weight: 800; letter-spacing: -0.035em; }
   h1 span { color: #2e8b62; }
   .harga { margin-top: 34px; display: inline-flex; align-items: center; gap: 18px; background: #fff; border-radius: 20px;
     padding: 16px 24px; box-shadow: 0 16px 34px -20px rgba(23,53,42,.45), 0 0 0 1px #e3efe8; }
@@ -20,9 +20,9 @@
   .harga i { font-style: normal; font-size: 18px; font-weight: 800; color: #8a5f0e; background: #fdf1d6; padding: 6px 10px; border-radius: 9px; }
   .bawah { position: absolute; left: 72px; bottom: 52px; display: flex; gap: 26px; font-size: 22px; color: #3c5a4e; }
   .bawah b { color: #22704d; }
-  .maskot { position: absolute; right: -40px; bottom: 6px; width: 560px; }
-  .gerigi { position: absolute; left: 0; right: 0; bottom: 0; height: 14px;
-    background: linear-gradient(-45deg, #2e8b62 9px, transparent 0) 0 0 / 18px 14px, linear-gradient(45deg, #2e8b62 9px, transparent 0) 0 0 / 18px 14px; }
+  /* Maskot 3D transparan (src/assets/maskot/melambai.webp) langsung di latar terang + bayangan lembut. */
+  .maskot { position: absolute; right: 70px; bottom: 34px; height: 540px;
+    filter: drop-shadow(0 18px 22px rgba(23,53,42,.16)); }
 </style>
 </head>
 <body>
@@ -33,6 +33,5 @@
   </div>
   <div class="bawah"><span>Gratis coba <b>14 hari</b></span><span>·</span><span><b>kasirsakti.id</b></span></div>
   <img class="maskot" src="../../src/assets/maskot/melambai.webp" alt="">
-  <div class="gerigi"></div>
 </body>
 </html>
