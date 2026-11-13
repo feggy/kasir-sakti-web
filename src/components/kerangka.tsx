@@ -13,7 +13,8 @@ export function Header() {
     <header className="sticky top-0 z-40 border-b border-line/80 bg-white/90 backdrop-blur-md">
       <div className={`${wadah} flex h-[72px] items-center justify-between`}>
         <Link href="/" aria-label="Kasir Sakti — ke atas" className="-ml-2">
-          <Image src="/logo.svg" alt="Kasir Sakti" width={463} height={190} priority className="h-10 w-auto sm:h-11" />
+          {/* Logo ringkas: sayap + "Kasir / Sakti" dua baris (sumber: prototype/generator/logo_sayap.py). */}
+          <Image src="/logo.svg" alt="Kasir Sakti" width={318} height={100} priority className="h-8 w-auto sm:h-9" />
         </Link>
         <nav className="flex items-center gap-7 text-[15px] text-body">
           <Link href="/#fitur" className="hidden hover:text-ink md:inline">Fitur</Link>
@@ -46,10 +47,7 @@ export function Footer({ maskot = true }: { maskot?: boolean } = {}) {
       {maskot && <Maskot src={dasar} sizes="120px" className="absolute -top-[96px] right-8 w-[120px] sm:right-16" />}
       <div className={`${wadah} grid gap-12 pt-16 pb-10 md:grid-cols-[1.5fr_1fr_1fr_1fr]`}>
         <div>
-          <div className="flex items-center gap-3">
-            <Image src="/ikon.svg" alt="" width={44} height={44} className="size-11 rounded-xl" />
-            <span className="text-xl font-extrabold text-white">Kasir Sakti</span>
-          </div>
+          <Image src="/logo-putih.svg" alt="Kasir Sakti" width={700} height={100} className="h-6 w-auto" />
           <p className="mt-4 max-w-sm text-[15px] leading-relaxed">
             Aplikasi kasir untuk warung, kedai, dan toko kecil. Jalan tanpa internet, bayar sekali pakai selamanya.
           </p>
