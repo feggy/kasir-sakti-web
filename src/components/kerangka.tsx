@@ -22,7 +22,7 @@ export function Header() {
           <Link href="/#harga" className="hidden hover:text-ink md:inline">Harga</Link>
           <Link href="/panduan" className="hidden hover:text-ink md:inline">Panduan</Link>
           <Link href="/kontak" className="hidden hover:text-ink md:inline">Kontak</Link>
-          <TombolPlayStore teks="Unduh" ukuran="kecil" />
+          <TombolPlayStore teks="Coba gratis" ukuran="kecil" />
         </nav>
       </div>
     </header>
