@@ -117,8 +117,6 @@ function ConfigForm({ config, onSaved }: { config: BillingConfig; onSaved: (c: B
     if (form.whatsapp && !/^\+[1-9]\d{7,14}$/.test(form.whatsapp)) e.whatsapp = "Format internasional, mis. +6281234567890.";
     const p = form.prices;
     for (const k of PRICE_KEYS) if (p[k] > 100_000_000) e[`prices.${k}`] = "Maksimal Rp100.000.000.";
-    if (p.online_6m > p.online_1m * 6) e["prices.online_6m"] = "Lebih mahal dari 6× harga 1 bulan — periksa lagi.";
-    if (p.online_12m > p.online_1m * 12) e["prices.online_12m"] = "Lebih mahal dari 12× harga 1 bulan — periksa lagi.";
     const reg = p.lifetime_regular ?? 0;
     if (reg > 0 && reg <= p.lifetime) e["prices.lifetime_regular"] = "Harus lebih besar dari harga Lifetime, atau kosongkan (0).";
     setErrors(e);
